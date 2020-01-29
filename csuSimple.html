@@ -1,0 +1,128 @@
+<!--
+Title: CSU-P Simple Token Blockchain Project
+Created by: Chris Toomey, Logan Vineyard, & Aaron Skilling
+Date updated: January 21, 2020
+Instructor: Dr. Kreminski
+-->
+<!-- Begin Webpage -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSU-P Simple Token</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<!-- Begin Javascript -->
+<script src="simpleJS.js" type="text/javascript"></script>
+<!-- End of Javascript -->
+<!-- Begin Header Section -->
+<div class="header">
+    <div class="imgHeader column">
+        <img src="csupueblo-logo.png" alt="CSU-P Wolfie Logo" class="imgLogo">
+    </div>
+    <div class="textHeader column">
+        <h1 class="centertxt">CSU-P Simple Token</h1>
+    </div>
+    <div class="column">
+        <ul class="navbar">
+            <li><a href="csuToken.html">Wolfie Token(ERC 20)</a></li>
+            <li><a href="csuVoter.html">CSU-P Voting</a></li>
+            <li class="active"><a href="csuSimple.html">Simple Token</a></li>
+        </ul>
+    </div>
+</div>
+<!-- End Header Section -->
+<!-- Begin Main Section -->
+<div class="main">
+    <div class="disclaimerHead">
+        <h2>Project Background</h2>
+    </div>
+    <!-- This is the main paragraph -->
+    <div class="disclaimer">
+        <h4>This project was created in an effort to display the uses of blockchain technology.
+        The project was put together by Dr. Kreminski, who is an Instructor at CSU-P, in an effort to introduce
+        blockchain technology to students. Dr. Kreminski only participated in teaching an introduction to blockchain
+        and it's uses in applications. The project itself was planned and built by <strong class="fontChange">Chris Toomey, Logan Vineyard, and
+        Aaron Skilling,</strong> which made it a completely student-built project with less than 10 hours of instruction on
+        the subject.</h4>
+    </div>
+    <div class="voterForm">
+        <!-- Table that contains all the inputs and buttons -->
+        <table class="tableView" align="center">
+            <tr>
+                <td>
+                    <h2 class="centertxt">This is the Simple Token Contract!</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 class="centertxt">Mint your coins here!</h2>
+                </td>
+            </tr>
+            <tr>
+                <td><!-- This is the add candidates -->
+                    <input id="coinReceiverMinted" class="inputbox" onfocus="this.select();" placeholder="Minting For Address..." type="text">
+                    <input id="coinMinted" class="inputbox" onfocus="this.select();" placeholder="Number of Coins..." type="text">
+                    <button class="btnBtn" onclick="mintSimpleCoin();">Mint Coin(s)!</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 class="centertxt">Send your coins here!</h2>
+                </td>
+            </tr>
+            <tr>
+                <td><!-- This is the updater -->
+                    <input id="addressReceiver" class="inputbox" onfocus="this.select();" placeholder="Receiver of Coin(s)..." type="text">
+                    <input id="sendCoinAmount" class="inputbox" onfocus="this.select();" placeholder="Number of Coins..." type="text">
+                    <button class="btnBtn" onclick="sendCoin();">Send Coin(s)!</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 class="centertxt">Check your balance here!</h2>
+                </td>
+            </tr>
+            <tr>
+                <td><!-- This is the transfer function -->
+                    <input id="balanceAddress" class="inputbox" onfocus="this.select();" placeholder="Address of Account..." type="text">
+                    <button class="btnBtn" onclick="balances();">Check Balance!</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 class="centertxt">Who minted these?</h2>
+                </td>
+            </tr>
+            <tr>
+                <td><!-- This is the transfer from function -->
+                    <button class="btnBtn" onclick="minter();">Who's the Minter!</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- End Main Section -->
+<!-- Begin Footer Section -->
+<div class="footer">
+    <div class ="footContent">
+        <div class="leftcontent column">
+            Created by Logan Vineyard, Chris Toomey, and Aaron Skilling, Instructed by Dr. Kremenski
+        </div>
+        <div class="midcontent column">
+            Ethereum Project &copy; <script type="text/javascript">
+                                        document.write(new Date().getFullYear());
+                                    </script>
+        </div>
+        <div class="rightcontent column">
+            Resources used: Robsten Network, Infura, Remix
+        </div>
+    </div>
+</div>
+<!-- End Footer Section -->
+</body>
+</html>
+<!-- End Of Webpage -->

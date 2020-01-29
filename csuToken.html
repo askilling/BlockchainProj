@@ -1,0 +1,155 @@
+<!--
+Title: CSU-P Token Blockchain Project
+Created by: Chris Toomey, Logan Vineyard, & Aaron Skilling
+Date updated: January 20, 2020
+Instructor: Dr. Kreminski
+-->
+<!-- Begin Webpage -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSU-P ERC20 Wolfie Token</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<!-- Begin Javascript -->
+<script src="wolfieJS.js" type="text/javascript"></script>
+<!-- End of Javascript -->
+<!-- Begin Header Section -->
+<div class="header">
+    <div class="imgHeader column">
+        <img src="csupueblo-logo.png" alt="CSU-P Wolfie Logo" class="imgLogo">
+    </div>
+    <div class="textHeader column">
+        <h1 class="centertxt">CSU-P Tokens</h1>
+    </div>
+    <div class="column">
+        <ul class="navbar">
+            <li class="active"><a href="csuToken.html">Wolfie Token(ERC 20)</a></li>
+            <li><a href="csuVoter.html">CSU-P Voting</a></li>
+            <li><a href="csuSimple.html">Simple Token</a></li>
+        </ul>
+    </div>
+</div>
+<!-- End Header Section -->
+<!-- Begin Main Section -->
+<div class="main">
+    <div class="disclaimerHead">
+        <h2>Project Background</h2>
+    </div>
+    <!-- This is the main paragraph -->
+    <div class="disclaimer">
+        <h4>This project was created in an effort to display the uses of blockchain technology.
+        The project was put together by Dr. Kreminski, who is an Instructor at CSU-P, in an effort to introduce
+        blockchain technology to students. Dr. Kreminski only participated in teaching an introduction to blockchain
+        and it's uses in applications. The project itself was planned and built by <strong class="fontChange">Chris Toomey, Logan Vineyard, and
+        Aaron Skilling,</strong> which made it a completely student-built project with less than 10 hours of instruction on
+        the subject.</h4>
+    </div>
+    <div class="voterForm">
+        <!-- Table that contains all the inputs and buttons -->
+        <table class="tableView" align="center">
+            <tr>
+                <td>
+                    <h2 class="centertxt">This is the ERC20 Token Contract!</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 class="centertxt">Mint your tokens here!</h2>
+                </td>
+            </tr>
+            <tr>
+                <td><!-- This is the minter -->
+                    <input id="mintNumOfTokens" class="inputbox" onfocus="this.select();" placeholder="Amount of tokens..." type="text">
+                    <button class="btnBtn" onclick="mintWolfieToken();">Mint WolfieToken(s)!</button>
+                    <button class="btnBtn" onclick="getTotalSupply();">Check WolfieToken's Supply!</button>
+                    <button class="btnBtn" onclick="getInformation();">Check Token Information!</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 class="centertxt">Send some Wolfie Tokens!</h2>
+                </td>
+            </tr>
+            <tr>
+                <td><!-- This is the transfer function -->
+                    <input id="addressReceiver" class="inputbox" onfocus="this.select();" placeholder="Address of receiver..." type="text">
+                    <input id="sendNumOfTokens" class="inputbox" onfocus="this.select();" placeholder="Amount of tokens..." type="text">
+                    <button class="btnBtn" onclick="transferToken();">Send WolfieToken(s)!</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 class="centertxt">Approve Transferable Wolfie Tokens!</h2>
+                </td>
+            </tr>
+            <tr>
+                <td><!-- This is the transfer function -->
+                    <input id="addressApproval" class="inputbox" onfocus="this.select();" placeholder="Contract address..." type="text">
+                    <input id="approvalNumOfTokens" class="inputbox" onfocus="this.select();" placeholder="Amount of tokens..." type="text">
+                    <button class="btnBtn" onclick="approveTokenTransfer();">Approve WolfieToken(s)!</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 class="centertxt">Transfer some Wolfie Tokens!</h2>
+                </td>
+            </tr>
+            <tr>
+                <td><!-- This is the transfer from function -->
+                    <input id="addressTransferSender" class="inputbox" onfocus="this.select();" placeholder="Address of sender..." type="text">
+                    <input id="addressTransferReceiver" class="inputbox" onfocus="this.select();" placeholder="Address of recipient..." type="text">
+                    <input id="transferNumOfTokens" class="inputbox" onfocus="this.select();" placeholder="Quantity..." type="text">
+                    <button class="btnBtn" onclick="transferFromTokens();">Send coin(s)!</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 class="centertxt">Check Transferable Wolfie Tokens!</h2>
+                </td>
+            </tr>
+            <tr>
+                <td><!-- This is the transfer from function -->
+                    <input id="addressAllowSender" class="inputbox" onfocus="this.select();" placeholder="Address of sender..." type="text">
+                    <input id="addressAllowReceiver" class="inputbox" onfocus="this.select();" placeholder="Address of recipient..." type="text">
+                    <button class="btnBtn" onclick="checkAllowances();">Check Allowance!</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 class="centertxt">Check your balance!</h2>
+                </td>
+            </tr>
+            <tr>
+                <td><!-- This is the check balance function -->
+                    <input id="balanceAddress" class="inputbox" onfocus="this.select();" placeholder="Check balance address..." type="text">
+                    <button class="btnBtn" onclick="getBalance();">Check Balance</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- End Main Section -->
+<!-- Begin Footer Section -->
+<div class="footer">
+    <div class ="footContent">
+        <div class="leftcontent column">
+            Created by Logan Vineyard, Chris Toomey, and Aaron Skilling, Instructed by Dr. Kremenski
+        </div>
+        <div class="midcontent column">
+            Ethereum Project &copy; <script type="text/javascript">
+                                        document.write(new Date().getFullYear());
+                                    </script>
+        </div>
+        <div class="rightcontent column">
+            Resources used: Robsten Network, Infura, Remix
+        </div>
+    </div>
+</div>
+<!-- End Footer Section -->
+</body>
+</html>
+<!-- End Of Webpage -->

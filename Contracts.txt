@@ -1,0 +1,96 @@
+***********************************Voting Contract*********************************************
+pragma solidity ^0.5.1;
+
+contract csupVote {
+
+    //Defines the voter
+    struct voter {
+        bool allowVote;
+        bool voted;
+    }
+
+    //Defines the candidates
+    struct candidate {
+        uint id;
+        string fName;
+        string lName;
+        string major;
+        uint voteCount;
+    }
+
+    //Address of contract creator for approval of votes and creatation of candidates
+    address public voteAprover = msg.sender;
+
+    //Mapping for candidates, voters, and has voted call
+    mapping(address => bool) public haveVoted;
+    mapping(uint => candidate) public candidates;
+    mapping(address => voter) public apprVoters;
+
+    //Creatation of candidate count
+    uint public candidatesCount;
+
+    //Contract creator must approve accounts for voting
+    function approverVoter (address _voter) public {
+        require(msg.sender == voteAprover, "Only the Administrator can give right to vote.");
+        require(!apprVoters[_voter].voted, "The voter already voted.");
+        require(apprVoters[_voter].allowVote == false);
+        apprVoters[_voter].allowVote = true;
+    }
+
+    //Contract creator is the only one allowed to add candidates
+    function addCandidate (string memory _fName, string memory _lName, string memory _major) public {
+        require(msg.sender == voteAprover, "Only the Administrator can enter new candidates.");
+        candidatesCount ++;
+        candidates[candidatesCount]=candidate(candidatesCount, _fName, _lName, _major, 0);
+
+    }
+
+     //Contract creator is the only one allowed to update candidates
+    function updateCandidate (uint candidatesCount, string memory _ufName, string memory _ulName, string memory _umajor) public {
+        require(msg.sender == voteAprover, "Only the Administrator can update candidates.");
+        candidates[candidatesCount]=candidate(candidatesCount, _ufName, _ulName, _umajor, 0);
+    }
+
+
+    //Main function for voting (some checks intergrated for double voting, permission to vote, and valid candidate)
+    function voteFor (uint _candidateId) public {
+        voter storage sender = apprVoters[msg.sender];
+        require(_candidateId > 0 && _candidateId <= candidatesCount, "No IDs match that number!");
+        require(sender.allowVote != false, "You do not have permission to vote!");
+        require(!sender.voted, "You've already voted.");
+        sender.voted = true;
+        haveVoted[msg.sender] = true;
+        candidates[_candidateId].voteCount ++;
+    }
+}
+
+***************************************** Simple Coin Contract ***************************************
+pragma solidity >=0.5.0 < 0.7.0;
+
+contract csupSimpleCoin {
+
+    address public minter;
+    mapping (address => uint) public balances;
+
+    event SentEvent(address from, address to, uint amountjustsent);
+
+    constructor() public {
+        minter = msg.sender;
+    }
+
+    function mintSimpleCoin(address receiver, uint amount) public {
+        require(msg.sender == minter, "You're not allowed to mint!");
+        require(amount < 10000, "Limit is 1000 coins!");
+        balances[receiver] += amount;
+    }
+
+    function sendCoin(address receiver, uint amountsent) public {
+        require(amountsent <= balances[msg.sender], "Funds are too low!");
+        balances[msg.sender] -= amountsent;
+        balances[receiver] += amountsent;
+        emit SentEvent(msg.sender, receiver, amountsent);
+    }
+}
+
+*************************************ERC20 Contract*********************************
+pragma solidity ^0.5.1;contract CSUPWolfieToken {        string public name = "CSUP Wolfie Token";    string public symbol = "WolfieToken";    string public standard = "Wolfie Token v1.0";    uint256 public totalSupply;        event Transfer(        address indexed senderAddress,        address indexed receiverAddress,        uint256 numOfTokens    );        event Approval(        address indexed tokenOwner,        address indexed tokenSpender,        uint256 numOfTokens    );        mapping(address => uint256) public balanceOf;    mapping(address => mapping(address => uint256)) public allowance;        function mintWolfieToken (uint256 _initialSupply) public {        balanceOf[msg.sender] = _initialSupply;        totalSupply = _initialSupply;    }        function transferWolfieTokens(address receiverAddress, uint256 numOfTokens) public returns (bool success) {        require(balanceOf[msg.sender] >= numOfTokens);        balanceOf[msg.sender] -= numOfTokens;        balanceOf[receiverAddress] += numOfTokens;        emit Transfer(msg.sender, receiverAddress, numOfTokens);        return true;    }        function approveTransfers(address spenderAddress, uint256 numOfTokens) public returns (bool success) {        allowance[msg.sender][spenderAddress] = numOfTokens;        emit Approval(msg.sender, spenderAddress, numOfTokens);        return true;    }        function transferFrom(address senderAddress, address receiverAddress, uint256 numOfTokens) public returns (bool success) {        require(numOfTokens <= balanceOf[receiverAddress]);        require(numOfTokens <= allowance[receiverAddress][msg.sender]);        balanceOf[senderAddress] -= numOfTokens;        balanceOf[receiverAddress] += numOfTokens;        allowance[senderAddress][msg.sender] -= numOfTokens;        emit Transfer(senderAddress, receiverAddress, numOfTokens);        return true;    }}
